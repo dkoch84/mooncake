@@ -4,12 +4,7 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-readFile() {
-  File('bin/mooncake').readAsString().then((String contents) {
-    print(contents);
-    return(contents);
-  });
-}
+String mooncake = "";
 
 // Configure routes.
 final _router = Router()
@@ -27,7 +22,7 @@ Response _echoHandler(Request request) {
 }
 
 Response _chokityHandler(Request req) {
-  return readFile().then((mooncake) => Response.ok(mooncake));
+  return Response.ok(mooncake);
 }
 
 void main(List<String> args) async {
@@ -36,6 +31,11 @@ void main(List<String> args) async {
 
   // Configure a pipeline that logs requests.
   final handler = Pipeline().addMiddleware(logRequests()).addHandler(_router);
+
+  File('bin/mooncake').readAsString().then((String contents) {
+    mooncake = contents;
+  });
+
 
   // For running in containers, we respect the PORT environment variable.
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
