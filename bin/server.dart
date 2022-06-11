@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'mooncake.dart';
+import 'mooncake-fancy.dart';
 
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
@@ -9,7 +10,8 @@ import 'package:shelf_router/shelf_router.dart';
 final _router = Router()
   ..get('/', _rootHandler)
   ..get('/echo/<message>', _echoHandler)
-  ..get('/mooncake', _chokityHandler);
+  ..get('/mooncake', _mooncakeHandler)
+  ..get('/chookity', _chookityHandler);
 
 Response _rootHandler(Request req) {
   return Response.ok('Hello, World!\n');
@@ -20,8 +22,12 @@ Response _echoHandler(Request request) {
   return Response.ok('$message\n');
 }
 
-Response _chokityHandler(Request req) {
+Response _mooncakeHandler(Request req) {
   return Response.ok(mooncake);
+}
+
+Response _chookityHandler(Request req) {
+  return Response.ok(chookity);
 }
 
 void main(List<String> args) async {
