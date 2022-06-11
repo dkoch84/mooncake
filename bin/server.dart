@@ -1,26 +1,14 @@
 import 'dart:io';
 import 'mooncake.dart';
 import 'mooncake-fancy.dart';
-
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_router/shelf_router.dart';
 
 // Configure routes.
 final _router = Router()
-  ..get('/', _rootHandler)
-  ..get('/echo/<message>', _echoHandler)
   ..get('/mooncake', _mooncakeHandler)
   ..get('/chookity', _chookityHandler);
-
-Response _rootHandler(Request req) {
-  return Response.ok('Hello, World!\n');
-}
-
-Response _echoHandler(Request request) {
-  final message = request.params['message'];
-  return Response.ok('$message\n');
-}
 
 Response _mooncakeHandler(Request req) {
   return Response.ok(mooncake);

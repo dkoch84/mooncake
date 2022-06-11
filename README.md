@@ -5,6 +5,19 @@ dart run
 curl localhost:8080/moooncake
 ```
 
+Removed handlers for future reference:
+
+```dart
+Response _rootHandler(Request req) {
+  return Response.ok('Hello, World!\n');
+}
+
+Response _echoHandler(Request request) {
+  final message = request.params['message'];
+  return Response.ok('$message\n');
+}
+```
+
 A server app built using [Shelf](https://pub.dev/packages/shelf),
 configured to enable running with [Docker](https://www.docker.com/).
 
