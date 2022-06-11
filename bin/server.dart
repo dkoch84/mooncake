@@ -1,15 +1,9 @@
 import 'dart:io';
+import 'mooncake.dart';
 
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_router/shelf_router.dart';
-
-readFile() {
-  var artfile = File('bin/mooncake');
-  var mooncake;
-  mooncake = artfile.readAsStringSync();
-  return("$mooncake\nChokity!\n");
-}
 
 // Configure routes.
 final _router = Router()
@@ -27,7 +21,7 @@ Response _echoHandler(Request request) {
 }
 
 Response _chokityHandler(Request req) {
-  return Response.ok(readFile());
+  return Response.ok(mooncake);
 }
 
 void main(List<String> args) async {
