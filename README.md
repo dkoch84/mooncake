@@ -3,6 +3,9 @@
 ```shell
 dart run
 curl localhost:8080/moooncake
+
+# for fancy terminals
+curl localhost:8080/chookity
 ```
 
 Removed handlers for future reference:
